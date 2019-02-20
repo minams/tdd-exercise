@@ -18,19 +18,29 @@ describe 'Blackjac Score' do
     score = blackjack_score(hand)
 
     # Assert <-  You do this part!
-
+    expect(score).must_equal 7
   end
 
   it 'facecards have values calculated correctly' do
+    facecards = ["King", "Queen", "Jack"]
 
+    facecards.each do |facecard|
+      score = blackjack_score([facecard, 6])
+      expect(score).must_equal 16
   end
 
   it 'calculates aces as 11 where it does not go over 21' do
+    (2..10).each do |card|
+      hand = [card, 1]
 
+      expect(blackjack_score(hand)).must_equal (card + 11)
+    end
   end
 
   it 'calculates aces as 1, if an 11 would cause the score to go over 21' do
-
+    (2..10).each do |card|
+      hand = [card, 10]
+    
   end
 
   it 'raises an ArgumentError for invalid cards' do
